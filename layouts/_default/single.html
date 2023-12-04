@@ -1,0 +1,35 @@
+{{define "main"}}
+<div class="single">
+    <div class="single-head">
+        <div class="single-texts">
+            <h1 class="single-title">{{.Title}}</h1>
+            <p class="single-desc">{{.Params.description}}</p>
+            <div class="single-detail">
+            <div class="single-detail__author">
+                <img src={{ .Params.avatar }} alt="" class="single__avatar" loading="lazy">
+                <span>
+                {{range .GetTerms "authors"}}
+                <a class="single__author" href={{.Permalink}}>{{.Name}}</a>
+                {{end}}
+                </span>
+            </div>
+               <div class="single-detail__categories">
+                 {{range .GetTerms "categories"}}
+                <a class="single__category" href={{.Permalink}}>{{.Name}}</a>
+                {{end}}
+            </div>
+            <time class="single-time">{{ dateFormat .Site.Params.dateFormat .Date }}</time>
+            </div>
+        </div>
+        <img class="single-image" src={{.Params.imageBig}} alt={{.Title}}>
+    </div>
+    <div class="single-bottom">
+        <div class="single-content">
+            {{.Content}}
+        </div>
+        <div class="single-rightBar">
+              {{partial "rightBar" .}}
+        </div>
+    </div>
+</div>
+{{ end }}
